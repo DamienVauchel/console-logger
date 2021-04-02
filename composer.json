@@ -1,0 +1,25 @@
+{
+    "name": "damienvauchel/console-logger",
+    "description": "Simple and light PHP console logger",
+    "keywords": ["console", "logger", "print", "echo", "easy", "simple", "light"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien",
+            "email": "damien.vauchel@pm.me"
+        }
+    ],
+    "require": {
+        "php": ">=7.3.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.3"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "DvConsoleLogger\\": "src/"
+        }
+    }
+}
