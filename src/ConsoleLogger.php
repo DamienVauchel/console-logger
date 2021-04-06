@@ -27,9 +27,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function alert($message, array $context = []): self
     {
         $this->log(LogLevel::ALERT, $message, $context);
@@ -37,9 +35,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function critical($message, array $context = []): self
     {
         $this->log(LogLevel::CRITICAL, $message, $context);
@@ -47,9 +43,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function debug($message, array $context = []): self
     {
         $this->log(LogLevel::DEBUG, $message, $context);
@@ -57,9 +51,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function emergency($message, array $context = []): self
     {
         $this->log(LogLevel::EMERGENCY, $message, $context);
@@ -67,9 +59,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function error($message, array $context = []): self
     {
         $this->log(LogLevel::ERROR, $message, $context);
@@ -77,9 +67,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function info($message, array $context = []): self
     {
         $this->log(LogLevel::INFO, $message, $context);
@@ -87,9 +75,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function notice($message, array $context = []): self
     {
         $this->log(LogLevel::NOTICE, $message, $context);
@@ -97,9 +83,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function success($message, array $context = []): self
     {
         $this->log(LogLevel::SUCCESS, $message, $context);
@@ -107,9 +91,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function title($message, array $context = []): self
     {
         $this->log(LogLevel::TITLE, $message, $context);
@@ -117,9 +99,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
+    /** @param string $message */
     public function warning($message, array $context = []): self
     {
         $this->log(LogLevel::WARNING, $message, $context);
@@ -168,7 +148,7 @@ class ConsoleLogger extends AbstractLogger
                 $color = ConsoleColor::RED;
                 break;
             case LogLevel::INFO:
-                $color = ConsoleColor::BLUE;
+                $color = ConsoleColor::CYAN;
                 break;
             case LogLevel::NOTICE:
                 $color = ConsoleColor::BLUE_BG;
@@ -177,7 +157,7 @@ class ConsoleLogger extends AbstractLogger
                 $color = ConsoleColor::GREEN;
                 break;
             case LogLevel::TITLE:
-                $color = ConsoleColor::CYAN;
+                $color = ConsoleColor::MAGENTA;
                 break;
             case LogLevel::WARNING:
                 $color = ConsoleColor::YELLOW;
@@ -203,7 +183,7 @@ class ConsoleLogger extends AbstractLogger
         $infos = '';
 
         if (!isset($context['showDate']) || (is_bool($context['showDate']) && true === $context['showDate'])) {
-            $infos .= (new \DateTime())->format($this->dateFormat).' : ';
+            $infos .= (new \DateTime())->format($this->dateFormat).' - ';
         }
 
         if (!isset($context['showTitle']) || (is_bool($context['showTitle']) && true === $context['showTitle'])) {

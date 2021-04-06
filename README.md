@@ -1,6 +1,6 @@
 # Simple and light PHP console logger
 
-This library permits you to easily log messages in console.
+This library permits you to easily log messages in console for PHP scripts and apps.
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@ This library permits you to easily log messages in console.
 
 ## Use
 
-This library is an easy-to-use one. 
+This library is an easy-to-use and light one. 
 
 ```php
 use DvConsoleLogger\ConsoleLogger;
@@ -32,14 +32,16 @@ $consoleLogger->alert('This is an alert !')
 $consoleLogger->divider();
 ```
 
+![](./doc/images/all_functions.png)
+
 You can chain the functions like in the example above or you can just call your logger in different line.
 
 ## Full documentation
 
-You can find full documentation here.
+To know all what you can do, you can find full documentation [here](./doc/doc.md).
 
 ## Contributions
 
 You can send PRs if you want to :)
 
-Just, please, follow these conventions.
+Just, please, follow these [conventions](./doc/conventions.md).
