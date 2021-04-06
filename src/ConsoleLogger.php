@@ -2,16 +2,19 @@
 
 namespace DvConsoleLogger;
 
-class ConsoleLogger
-{
-    const BLUE = '34';
-    const CYAN = '36';
-    const GREEN = '32';
-    const MAGENTA = '35';
-    const RED = '31';
-    const YELLOW = '33';
+use Psr\Log\AbstractLogger;
 
-    public static function divider(string $char = '=', int $number = 65, string $color = ''): void
+class ConsoleLogger extends AbstractLogger
+{
+    /** @var string */
+    private $dateFormat;
+    
+    public function __construct(string $dateFormat = 'd-m-Y H:i:s')
+    {
+        $this->dateFormat = $dateFormat;         
+    }
+
+    public function divider(string $char = '=', int $number = 65, string $color = ConsoleColor::RESET): self
     {
         $divider = '';
 
@@ -19,66 +22,194 @@ class ConsoleLogger
             $divider .= $char;
         }
 
-        switch ($color) {
-            case 'pink':
-                $color = self::MAGENTA;
+        $this->log(LogLevel::DIVIDER, $divider, ['color' => $color, 'showTitle' => false, 'showDate' => false]);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function alert($message, array $context = []): self
+    {
+        $this->log(LogLevel::ALERT, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function critical($message, array $context = []): self
+    {
+        $this->log(LogLevel::CRITICAL, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function debug($message, array $context = []): self
+    {
+        $this->log(LogLevel::DEBUG, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function emergency($message, array $context = []): self
+    {
+        $this->log(LogLevel::EMERGENCY, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function error($message, array $context = []): self
+    {
+        $this->log(LogLevel::ERROR, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function info($message, array $context = []): self
+    {
+        $this->log(LogLevel::INFO, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function notice($message, array $context = []): self
+    {
+        $this->log(LogLevel::NOTICE, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function success($message, array $context = []): self
+    {
+        $this->log(LogLevel::SUCCESS, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function title($message, array $context = []): self
+    {
+        $this->log(LogLevel::TITLE, $message, $context);
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function warning($message, array $context = []): self
+    {
+        $this->log(LogLevel::WARNING, $message, $context);
+
+        return $this;
+    }
+
+    public function echo(string $message, array $context = []): self
+    {
+        if (!isset($context['showTitle'])) {
+            $context['showTitle'] = false;
+        }
+
+        $this->log(LogLevel::ECHO, $message, $context);
+
+        return $this;
+    }
+
+    public function setDateFormat(string $dateFormat): self
+    {
+        $this->dateFormat = $dateFormat;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $level
+     * @param string $message
+     */
+    public function log($level, $message, array $context = []): self
+    {
+        $color = ConsoleColor::RESET;
+        $title = strtoupper($level);
+
+        switch ($level) {
+            case LogLevel::ALERT:
+                $color = ConsoleColor::BRIGHT_RED;
                 break;
-            case 'blue':
-                $color = self::CYAN;
+            case LogLevel::CRITICAL:
+                $color = ConsoleColor::RED_BG;
+                break;
+            case LogLevel::EMERGENCY:
+                $color = ConsoleColor::YELLOW_BG;
+                break;
+            case LogLevel::ERROR:
+                $color = ConsoleColor::RED;
+                break;
+            case LogLevel::INFO:
+                $color = ConsoleColor::BLUE;
+                break;
+            case LogLevel::NOTICE:
+                $color = ConsoleColor::BLUE_BG;
+                break;
+            case LogLevel::SUCCESS:
+                $color = ConsoleColor::GREEN;
+                break;
+            case LogLevel::TITLE:
+                $color = ConsoleColor::CYAN;
+                break;
+            case LogLevel::WARNING:
+                $color = ConsoleColor::YELLOW;
                 break;
             default:
-                $color = '0';
         }
 
-        echo self::echoMessage($divider, $color);
-    }
-
-    public static function echo(string $message): void
-    {
-        echo self::echoMessage($message);
-    }
-
-    public static function info(string $message, bool $showTitle = true): void
-    {
-        echo self::echoMessage($message, self::BLUE, 'INFO', $showTitle);
-    }
-
-    public static function error(string $message, bool $showTitle = true): void
-    {
-        echo self::echoMessage($message, self::RED, 'ERROR', $showTitle);
-    }
-
-    public static function pinkTitle(string $message, bool $showTitle = true): void
-    {
-        echo self::echoMessage($message, self::MAGENTA, 'TITLE', $showTitle);
-    }
-
-    public static function success(string $message, bool $showTitle = true): void
-    {
-        echo self::echoMessage($message, self::GREEN, 'SUCCESS', $showTitle);
-    }
-
-    public static function title(string $message, bool $showTitle = true): void
-    {
-        echo self::echoMessage($message, self::CYAN, 'TITLE', $showTitle);
-    }
-
-    public static function warning(string $message, bool $showTitle = true): void
-    {
-        echo self::echoMessage($message, self::YELLOW, 'WARNING', $showTitle);
-    }
-
-    private static function echoMessage(string $message, string $color = '0', string $title = '', bool $showTitle = false): string
-    {
-        return "\033[".$color."m".self::setMessageDisplay($message, $title, $showTitle)."\033[0m".PHP_EOL;
-    }
-
-    private static function setMessageDisplay(string $message, string $title, bool $showTitle = true): string
-    {
-        if (true === $showTitle) {
-            $message = $title.': '.$message;
+        if (isset($context['color'])) {
+            $color = $context['color'];
         }
 
-        return $message;
+        echo "\033[".$color."m".$this->setMessageDisplay($message, $title, $context)."\033[".ConsoleColor::RESET.'m'.PHP_EOL;
+
+        return $this;
+    }
+
+    private function setMessageDisplay(
+        string $message,
+        string $title,
+        array $context
+    ): string
+    {
+        $infos = '';
+
+        if (!isset($context['showDate']) || (is_bool($context['showDate']) && true === $context['showDate'])) {
+            $infos .= (new \DateTime())->format($this->dateFormat).' : ';
+        }
+
+        if (!isset($context['showTitle']) || (is_bool($context['showTitle']) && true === $context['showTitle'])) {
+            $infos .= $title.' - ';
+        }
+
+        return $infos.$message;
     }
 }
