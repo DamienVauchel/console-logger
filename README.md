@@ -6,6 +6,16 @@ This library permits you to easily log messages in console for PHP scripts and a
 
 * PHP >= 7.3
 
+## Install
+
+You can install the package with git clone and composer install in the directory.
+
+Or you can directly use composer :
+
+```bash
+composer require scoobydam/console-logger
+```
+
 ## Use
 
 This library is an easy-to-use and light one. 
