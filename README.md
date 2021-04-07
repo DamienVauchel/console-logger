@@ -1,5 +1,7 @@
 # Simple and light PHP console logger
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8dc0e33e36fc4369af9bb2b4ab6be3b5)](https://app.codacy.com/gh/DamienVauchel/console-logger?utm_source=github.com&utm_medium=referral&utm_content=DamienVauchel/console-logger&utm_campaign=Badge_Grade_Settings)
+
 This library permits you to easily log messages in console for PHP scripts and apps.
 
 ## Prerequisites
