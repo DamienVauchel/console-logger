@@ -1,7 +1,9 @@
 {
-    "name": "damienvauchel/console-logger",
+    "name": "scoobydam/console-logger",
     "description": "Simple and light PHP console logger",
     "keywords": ["console", "logger", "print", "echo", "easy", "simple", "light"],
+    "minimum-stability": "stable",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -21,6 +23,11 @@
     "autoload": {
         "psr-4": {
             "ScoobyConsoleLogger\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ScoobyConsoleLogger\\Tests\\": "tests/"
         }
     },
     "require-dev": {
