@@ -2,9 +2,21 @@
 
 This library permits you to easily log messages in console for PHP scripts and apps.
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/571bd6ead94644648680eff07f5c1503)](https://www.codacy.com/gh/DamienVauchel/console-logger/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DamienVauchel/console-logger&amp;utm_campaign=Badge_Grade)
+
 ## Prerequisites
 
 * PHP >= 7.3
+
+## Install
+
+You can install the package with git clone and composer install in the directory.
+
+Or you can directly use composer :
+
+```bash
+composer require scoobydam/console-logger
+```
 
 ## Use
 

@@ -202,7 +202,7 @@ class ConsoleLogger extends AbstractLogger
             $color = $context['color'];
         }
 
-        echo "\033[" . $color . 'm' . $this->setMessageDisplay($message, $title, $context) . "\033[" . ConsoleColor::RESET . 'm' . PHP_EOL;
+        print_r("\033[" . $color . 'm' . $this->setMessageDisplay($message, $title, $context) . "\033[" . ConsoleColor::RESET . 'm' . PHP_EOL);
 
         return $this;
     }
