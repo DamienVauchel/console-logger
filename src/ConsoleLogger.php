@@ -2,16 +2,17 @@
 
 namespace ScoobyConsoleLogger;
 
+use DateTime;
 use Psr\Log\AbstractLogger;
 
 class ConsoleLogger extends AbstractLogger
 {
     /** @var string */
     private $dateFormat;
-    
+
     public function __construct(string $dateFormat = 'd-m-Y H:i:s')
     {
-        $this->dateFormat = $dateFormat;         
+        $this->dateFormat = $dateFormat;
     }
 
     public function divider(string $char = '=', int $number = 65, string $color = ConsoleColor::RESET): self
@@ -27,7 +28,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function alert($message, array $context = []): self
     {
         $this->log(LogLevel::ALERT, $message, $context);
@@ -35,7 +39,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function critical($message, array $context = []): self
     {
         $this->log(LogLevel::CRITICAL, $message, $context);
@@ -43,7 +50,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function debug($message, array $context = []): self
     {
         $this->log(LogLevel::DEBUG, $message, $context);
@@ -51,7 +61,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function emergency($message, array $context = []): self
     {
         $this->log(LogLevel::EMERGENCY, $message, $context);
@@ -59,7 +72,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function error($message, array $context = []): self
     {
         $this->log(LogLevel::ERROR, $message, $context);
@@ -67,7 +83,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function info($message, array $context = []): self
     {
         $this->log(LogLevel::INFO, $message, $context);
@@ -75,7 +94,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function notice($message, array $context = []): self
     {
         $this->log(LogLevel::NOTICE, $message, $context);
@@ -83,7 +105,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function success($message, array $context = []): self
     {
         $this->log(LogLevel::SUCCESS, $message, $context);
@@ -91,7 +116,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function title($message, array $context = []): self
     {
         $this->log(LogLevel::TITLE, $message, $context);
@@ -99,7 +127,10 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
-    /** @param string $message */
+    /**
+     * @param string $message
+     * @param (string|bool)[] $context
+     */
     public function warning($message, array $context = []): self
     {
         $this->log(LogLevel::WARNING, $message, $context);
@@ -107,6 +138,7 @@ class ConsoleLogger extends AbstractLogger
         return $this;
     }
 
+    /** @param (string|bool)[] $context */
     public function echo(string $message, array $context = []): self
     {
         if (!isset($context['showTitle'])) {
@@ -128,6 +160,7 @@ class ConsoleLogger extends AbstractLogger
     /**
      * @param mixed $level
      * @param string $message
+     * @param (string|bool)[] $context
      */
     public function log($level, $message, array $context = []): self
     {
@@ -169,27 +202,27 @@ class ConsoleLogger extends AbstractLogger
             $color = $context['color'];
         }
 
-        echo "\033[".$color."m".$this->setMessageDisplay($message, $title, $context)."\033[".ConsoleColor::RESET.'m'.PHP_EOL;
+        echo "\033[" . $color . 'm' . $this->setMessageDisplay($message, $title, $context) . "\033[" . ConsoleColor::RESET . 'm' . PHP_EOL;
 
         return $this;
     }
 
+    /** @param (string|bool)[] $context */
     private function setMessageDisplay(
         string $message,
         string $title,
         array $context
-    ): string
-    {
+    ): string {
         $infos = '';
 
         if (!isset($context['showDate']) || (is_bool($context['showDate']) && true === $context['showDate'])) {
-            $infos .= (new \DateTime())->format($this->dateFormat).' - ';
+            $infos .= (new DateTime())->format($this->dateFormat) . ' - ';
         }
 
         if (!isset($context['showTitle']) || (is_bool($context['showTitle']) && true === $context['showTitle'])) {
-            $infos .= $title.' - ';
+            $infos .= $title . ' - ';
         }
 
-        return $infos.$message;
+        return $infos . $message;
     }
 }

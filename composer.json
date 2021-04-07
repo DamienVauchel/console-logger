@@ -22,5 +22,11 @@
         "psr-4": {
             "ScoobyConsoleLogger\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpro/grumphp": "^1.3",
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "phpstan/phpstan": "^0.12.83",
+        "phpunit/phpunit": "^9.5"
     }
 }
