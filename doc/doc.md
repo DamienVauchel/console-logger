@@ -1,11 +1,11 @@
-# DvConsoleLogger documentation
+# ScoobyConsoleLogger documentation
 
-To use the library, you have to create an instance of DvConsoleLogger\ConsoleLogger .
+To use the library, you have to create an instance of ScoobyConsoleLogger\ConsoleLogger .
 
 Then, you'll be able to run some functions to echo some messages :
 
 ```php
-use DvConsoleLogger\ConsoleLogger;
+use ScoobyConsoleLogger\ConsoleLogger;
 
 $consoleLogger = new ConsoleLogger();
 
@@ -41,7 +41,7 @@ Default one is  **d-m-Y H:i:s**
 1. Use the constructor
 
 ```php
-use DvConsoleLogger\ConsoleLogger;
+use ScoobyConsoleLogger\ConsoleLogger;
 
 $consoleLogger = new ConsoleLogger('m/d/Y - H:i');
 
@@ -55,7 +55,7 @@ $consoleLogger->echo('Let see the new date format');
 It's usefull if you need to change the date format for some reason.
 
 ```php
-use DvConsoleLogger\ConsoleLogger;
+use ScoobyConsoleLogger\ConsoleLogger;
 
 $consoleLogger = new ConsoleLogger();
 
@@ -82,7 +82,7 @@ public function log($level, $message, array $context = []): self
 All other functions are like :
 
 ```php
-use DvConsoleLogger\LogLevel;
+use ScoobyConsoleLogger\LogLevel;
 
 /** @param string $message */
 public function alert($message, array $context = []): self
@@ -99,11 +99,11 @@ So you can directly use the log function with custom log levels or directly use 
 
 Some colors are chosen by default with the log level by the log() function. But you can override this color by passing one in the context.
 
-Please use a DvConsoleLogger\ConsoleColor constant to be sure to display a known color.
+Please use a ScoobyConsoleLogger\ConsoleColor constant to be sure to display a known color.
 
 ```php
-use DvConsoleLogger\ConsoleLogger;
-use DvConsoleLogger\ConsoleColor;
+use ScoobyConsoleLogger\ConsoleLogger;
+use ScoobyConsoleLogger\ConsoleColor;
 
 $consoleLogger = new ConsoleLogger();
 
@@ -119,7 +119,7 @@ $consoleLogger->debug('Green background debug', ['color' => ConsoleColor::GREEN_
 You can choose to hide the date from the display by setting the **showDate** context parameter to false.
 
 ```php
-use DvConsoleLogger\ConsoleLogger;
+use ScoobyConsoleLogger\ConsoleLogger;
 
 $consoleLogger = new ConsoleLogger();
 
@@ -134,7 +134,7 @@ $consoleLogger->debug('Debug without date', ['showDate' => false]);
 You can choose to hide the title from the display by setting the **showTitle** context parameter to false.
 
 ```php
-use DvConsoleLogger\ConsoleLogger;
+use ScoobyConsoleLogger\ConsoleLogger;
 
 $consoleLogger = new ConsoleLogger();
 
@@ -155,8 +155,8 @@ public function divider(string $char = '=', int $number = 65, string $color = Co
 ```
 
 ```php
-use DvConsoleLogger\ConsoleLogger;
-use DvConsoleLogger\ConsoleColor;
+use ScoobyConsoleLogger\ConsoleLogger;
+use ScoobyConsoleLogger\ConsoleColor;
 
 $consoleLogger = new ConsoleLogger();
 

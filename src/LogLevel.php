@@ -1,6 +1,6 @@
 <?php
 
-namespace DvConsoleLogger;
+namespace ScoobyConsoleLogger;
 
 abstract class LogLevel extends \Psr\Log\LogLevel
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace DvConsoleLogger;
+namespace ScoobyConsoleLogger;
 
 use Psr\Log\AbstractLogger;
 

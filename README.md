@@ -11,7 +11,7 @@ This library permits you to easily log messages in console for PHP scripts and a
 This library is an easy-to-use and light one. 
 
 ```php
-use DvConsoleLogger\ConsoleLogger;
+use ScoobyConsoleLogger\ConsoleLogger;
 
 $consoleLogger = new ConsoleLogger();
 
